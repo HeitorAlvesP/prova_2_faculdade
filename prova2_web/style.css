@@ -1,0 +1,29 @@
+body{
+    background-color: rgb(49, 51, 75);
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.list-group-item{
+    margin-bottom: 10px;
+}
+
+
+
+.buttons-container {
+    /* align-items: right;
+     */
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: 10px; /* Adiciona um espaçamento entre os botões */
+}
+
+/* Estilo específico para os botões, se necessário */
+.buttons-container .btn {
+    font-size: 14px; /* Ajusta o tamanho da fonte dos botões */
+    padding: 6px 12px; /* Ajusta o padding interno dos botões */
+    border-radius: 4px; /* Arredonda os cantos dos botões */
+}
