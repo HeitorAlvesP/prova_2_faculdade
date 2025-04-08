@@ -1,38 +1,49 @@
-document.getElementById('adicionarProduto').addEventListener('click', function() {
+document.getElementById('adicionarProduto').addEventListener('click', function () {
     let produto = document.getElementById('produtoInput').value;
 
     if (produto) {
         let li = document.createElement('li');
-        li.classList.add('list-group-item');
+        li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+
+        let leftDiv = document.createElement('div');
+        leftDiv.classList.add('d-flex', 'align-items-center');
 
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.classList.add('me-2');
         checkbox.addEventListener('change', moverItem);
 
+        let nomeSpan = document.createElement('span');
+        nomeSpan.classList.add('nome-produto');
+        nomeSpan.textContent = produto;
+
+        leftDiv.appendChild(checkbox);
+        leftDiv.appendChild(nomeSpan);
+
+        let buttonsContainer = document.createElement('div');
+        buttonsContainer.classList.add('buttons-container', 'd-flex');
 
         let editarBtn = document.createElement('button');
         editarBtn.classList.add('btn', 'btn-warning', 'btn-sm', 'me-2');
         editarBtn.textContent = 'Editar';
 
-        editarBtn.addEventListener('click', function() {
-            editarProduto(li);
-        });        
+        editarBtn.addEventListener('click', function () {
+            editarProduto(nomeSpan);
+        });
 
         let excluirBtn = document.createElement('button');
         excluirBtn.classList.add('btn', 'btn-danger', 'btn-sm');
         excluirBtn.textContent = 'Excluir';
 
-        excluirBtn.addEventListener('click', function() {
+        excluirBtn.addEventListener('click', function () {
             excluirProduto(li);
         });
 
-        
+        buttonsContainer.appendChild(editarBtn);
+        buttonsContainer.appendChild(excluirBtn);
 
-        li.appendChild(checkbox);
-        li.appendChild(document.createTextNode(produto));
-        li.appendChild(editarBtn);
-        li.appendChild(excluirBtn);
+        li.appendChild(leftDiv);
+        li.appendChild(buttonsContainer);
 
         document.getElementById('listaCompras').appendChild(li);
         document.getElementById('produtoInput').value = '';
@@ -44,7 +55,7 @@ document.getElementById('adicionarProduto').addEventListener('click', function()
             confirmButtonText: 'Fechar'
         });
 
-    } else{
+    } else {
         Swal.fire({
             title: 'Nome em Branco',
             text: 'Digite o nome do produto',
@@ -52,7 +63,6 @@ document.getElementById('adicionarProduto').addEventListener('click', function()
             confirmButtonText: 'Fechar'
         });
     }
-
 
     function moverItem(event) {
         let item = event.target.closest('li');
@@ -65,10 +75,10 @@ document.getElementById('adicionarProduto').addEventListener('click', function()
         }
     }
 
-    function editarProduto(item) {
-        let novoNome = prompt('Digite o novo nome para o produto:', item.firstChild.textContent.trim());
+    function editarProduto(nomeSpan) {
+        let novoNome = prompt('Digite o novo nome para o produto:', nomeSpan.textContent.trim());
         if (novoNome) {
-            item.firstChild.textContent = novoNome;
+            nomeSpan.textContent = novoNome;
 
             Swal.fire({
                 title: 'Alteração concluída',
@@ -78,10 +88,10 @@ document.getElementById('adicionarProduto').addEventListener('click', function()
             });
         }
     }
-    
+
     function excluirProduto(item) {
         item.remove();
-    
+
         Swal.fire({
             title: 'Produto excluído',
             text: 'O produto foi removido com sucesso.',
@@ -89,5 +99,4 @@ document.getElementById('adicionarProduto').addEventListener('click', function()
             confirmButtonText: 'Fechar'
         });
     }
-
 });
