@@ -16,16 +16,14 @@ body{
 }
 
 .buttons-container {
-    /* align-items: right;
-     */
     display: flex;
-    justify-content: flex-end; /* Alinha os botões à direita */
-    gap: 10px; /* Adiciona um espaçamento entre os botões */
+    justify-content: flex-end; 
+    gap: 10px;
 }
 
-/* Estilo específico para os botões, se necessário */
+
 .buttons-container .btn {
-    font-size: 14px; /* Ajusta o tamanho da fonte dos botões */
-    padding: 6px 12px; /* Ajusta o padding interno dos botões */
-    border-radius: 4px; /* Arredonda os cantos dos botões */
+    font-size: 14px; 
+    padding: 6px 12px; 
+    border-radius: 4px;
 }
